@@ -1,0 +1,61 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+//===================================
+// CONFIGURATION CONSTANTS
+//===================================
+
+// GENERAL
+#define NUM_PINS 34
+#define BAUD_RATE 115200
+#define ADC_RESOLUTION 16
+#define PWM_RESOLUTION 8
+#define PWM0_FREQUENCY 187500
+#define PWM1_FREQUENCY 187500
+#define PWM2_FREQUENCY 187500
+#define FTM0PIN 5
+#define FTM1PIN 6
+#define FTM2PIN 25
+
+// DEVICES
+#define DEVICELIST_CODE 255
+#define DEVICELIST_ADD_CODE 'A'
+#define DEVICELIST_REMOVE_CODE 'R'
+#define DEVICELIST_CLEAR_CODE 'C'
+#define DEVICELIST_HELLO_CODE 'K'
+#define DIGITAL_INPUT_CODE 'D'
+#define DIGITAL_INPUT_READ_CODE 'R'
+#define DIGITAL_OUTPUT_CODE 'd'
+#define DIGITAL_OUTPUT_WRITE_CODE 'W'
+#define ANALOG_INPUT_CODE 'A'
+#define ANALOG_OUTPUT_CODE 'a'
+#define ENCODER_CODE 'E'
+#define MOTOR_CODE 'M'
+#define FEEDBACK_MOTOR_CODE 'm'
+#define SERVO_CODE 'S'
+#define STEPPER_CODE 's'
+#define GYRO_CODE 'G'
+#define ULTRASONIC_CODE 'U'
+#define IR_CODE 'I'
+#define COLOR_CODE 'C'
+
+// PACKETS
+#define PACKET_START_BYTE 240
+#define PACKET_MIN_REQUEST_SIZE 6
+#define PACKET_MIN_RESPONSE_SIZE 5
+#define PACKET_MAX_SIZE 32
+
+// SERIAL ERRORS
+#define PACKET_OOR_CODE 'L'
+#define PACKET_SHORT_CODE 'S'
+#define NO_MANS_LAND_CODE 'N'
+
+// GENERAL RESPONSES
+#define OK_CODE 'G'
+#define DEST_NOT_FOUND_CODE 'D'
+#define REQUEST_BODY_INVALID_CODE 'W'
+#define REQUEST_LENGTH_INVALID_CODE 'X'
+#define DEVICE_OOR_CODE 'Y'
+#define DEVICE_INVALID_CODE 'Z'
+
+#endif
