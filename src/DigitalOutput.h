@@ -1,5 +1,5 @@
-#ifndef DIGITAL_OOUTPUT_H
-#define DIGITAL_OOUTPUT_H
+#ifndef DIGITAL_OUTPUT_H
+#define DIGITAL_OUTPUT_H
 
 #include <cstdint>
 #include <vector>
