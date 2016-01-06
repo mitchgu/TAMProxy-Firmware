@@ -42,7 +42,7 @@ Supported Devices
 - [x] Digital input
 - [x] Digital output
 - [x] Analog input
-- [ ] Analog output (PWM, or DAC on A14/40)
+- [x] Analog output (PWM, or DAC on A14/40)
 - [ ] Quadrature encoder
 - [ ] Standard Motor (Cytron/Dago with PWM & dir)
 - [ ] Feedback motor (Encoder feedback with PID for settable speed)
