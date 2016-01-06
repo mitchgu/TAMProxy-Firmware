@@ -33,6 +33,7 @@
 #define ANALOG_OUTPUT_WRITE_CODE 'W'
 #define ENCODER_CODE 'E'
 #define MOTOR_CODE 'M'
+#define MOTOR_WRITE_CODE 'W'
 #define FEEDBACK_MOTOR_CODE 'm'
 #define SERVO_CODE 'S'
 #define STEPPER_CODE 's'

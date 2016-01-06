@@ -10,6 +10,7 @@
 #include "DigitalOutput.h"
 #include "AnalogInput.h"
 #include "AnalogOutput.h"
+#include "Motor.h"
 
 // Handles a packet request to it
 // Capable of adding to, removing from, and clearing the devices
@@ -78,6 +79,11 @@ std::vector<uint8_t> DeviceList::add(std::vector<uint8_t>& request) {
         case ANALOG_OUTPUT_CODE:
             if (request.size() == 3) {
                 d = new AnalogOutput(request[2]);
+            } else { return {REQUEST_LENGTH_INVALID_CODE}; };
+            break;
+        case MOTOR_CODE:
+            if (request.size() == 4) {
+                d = new Motor(request[2], request[3]);
             } else { return {REQUEST_LENGTH_INVALID_CODE}; };
             break;
         default:
