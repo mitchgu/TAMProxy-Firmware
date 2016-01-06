@@ -32,8 +32,7 @@ bool PacketController::receive() {
                 _errorFlag = false;
                 _receiveLength = PACKET_MAX_SIZE;
             }
-            processByte(newByte);
-            return false;
+            return processByte(newByte);
         default:
             if (!_errorFlag) {
                 if (_midReceive) {
