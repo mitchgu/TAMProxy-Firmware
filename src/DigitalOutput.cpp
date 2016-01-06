@@ -10,7 +10,6 @@ DigitalOutput::DigitalOutput(uint8_t pin) {
     pinMode(pin, OUTPUT);
 }
 
-// The request must have just 'G' (get) to go through. Kinda just a formality
 std::vector<uint8_t> DigitalOutput::handleRequest(std::vector<uint8_t> &request) {
     if (request.size() != 2) {
         return {REQUEST_LENGTH_INVALID_CODE};

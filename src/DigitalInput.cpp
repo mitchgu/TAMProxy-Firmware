@@ -14,7 +14,6 @@ DigitalInput::DigitalInput(uint8_t pin, uint8_t pullup) {
     }
 }
 
-// The request must have just 'G' (get) to go through. Kinda just a formality
 std::vector<uint8_t> DigitalInput::handleRequest(std::vector<uint8_t> &request) {
     if (request.size() != 1) {
         return {REQUEST_LENGTH_INVALID_CODE};
