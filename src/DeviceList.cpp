@@ -9,6 +9,7 @@
 #include "DigitalInput.h"
 #include "DigitalOutput.h"
 #include "AnalogInput.h"
+#include "AnalogOutput.h"
 
 // Handles a packet request to it
 // Capable of adding to, removing from, and clearing the devices
@@ -72,6 +73,11 @@ std::vector<uint8_t> DeviceList::add(std::vector<uint8_t>& request) {
         case ANALOG_INPUT_CODE:
             if (request.size() == 3) {
                 d = new AnalogInput(request[2]);
+            } else { return {REQUEST_LENGTH_INVALID_CODE}; };
+            break;
+        case ANALOG_OUTPUT_CODE:
+            if (request.size() == 3) {
+                d = new AnalogOutput(request[2]);
             } else { return {REQUEST_LENGTH_INVALID_CODE}; };
             break;
         default:
