@@ -48,6 +48,9 @@ TOOLSPATH = $(ARDUINOPATH)/hardware/tools
 # path location for Teensy 3 core
 COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
 
+# path location for Teensy SPI hardware library
+SPILIBRARYPATH = $(ARDUINOPATH)/hardware/teensy/avr/libraries/SPI
+
 # path location for Arduino libraries
 LIBRARYPATH = libraries
 
@@ -93,6 +96,8 @@ OBJCOPY = $(abspath $(COMPILERPATH))/arm-none-eabi-objcopy
 SIZE = $(abspath $(COMPILERPATH))/arm-none-eabi-size
 
 # automatically create lists of the sources and objects
+SLC_FILES := $(wildcard $(SPILIBRARYPATH)/*.c)
+SLCPP_FILES := $(wildcard $(SPILIBRARYPATH)/*.cpp)
 LC_FILES := $(wildcard $(LIBRARYPATH)/*/*.c)
 LCPP_FILES := $(wildcard $(LIBRARYPATH)/*/*.cpp)
 TC_FILES := $(wildcard $(COREPATH)/*.c)
@@ -104,8 +109,9 @@ INO_FILES := $(wildcard src/*.ino)
 
 # include paths for libraries
 L_INC := $(foreach lib,$(filter %/, $(wildcard $(LIBRARYPATH)/*/)), -I$(lib))
+L_INC += -I$(SPILIBRARYPATH)/
 
-SOURCES := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(INO_FILES:.ino=.o) $(TC_FILES:.c=.o) $(TCPP_FILES:.cpp=.o) $(LC_FILES:.c=.o) $(LCPP_FILES:.cpp=.o)
+SOURCES := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(INO_FILES:.ino=.o) $(TC_FILES:.c=.o) $(TCPP_FILES:.cpp=.o) $(LC_FILES:.c=.o) $(LCPP_FILES:.cpp=.o) $(SLC_FILES:.c=.o) $(SLCPP_FILES:.cpp=.o)
 OBJS := $(foreach src,$(SOURCES), $(BUILDDIR)/$(src))
 
 all: hex
