@@ -1,6 +1,8 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
+#include <cstdint>
+
 // Virtual device class that each device should be derived from to take advantage of that sweet, sweet polymorphism
 class Device {
 public:
