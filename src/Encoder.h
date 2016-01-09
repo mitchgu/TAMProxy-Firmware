@@ -1,5 +1,5 @@
-#ifndef ANALOG_INPUT_H
-#define ANALOG_INPUT_H
+#ifndef ENCODER_H
+#define ENCODER_H
 
 #include <cstdint>
 #include <vector>
