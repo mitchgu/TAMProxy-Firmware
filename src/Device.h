@@ -5,6 +5,7 @@
 class Device {
 public:
     virtual std::vector<uint8_t> handleRequest(std::vector<uint8_t> &request) = 0;
+    virtual ~Device() {};
 };
 
 #endif
