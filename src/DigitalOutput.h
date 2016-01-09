@@ -5,8 +5,9 @@
 #include <vector>
 #include "Device.h"
 
-// A class that just writes to a digital output pin
+namespace tamproxy {
 
+// A class that just writes to a digital output pin
 class DigitalOutput : public Device {
 private:
     uint8_t _pin;
@@ -15,4 +16,5 @@ public:
     std::vector<uint8_t> handleRequest(std::vector<uint8_t> &request);
 };
 
+}
 #endif

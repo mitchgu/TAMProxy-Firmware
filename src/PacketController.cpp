@@ -7,6 +7,8 @@
 #include "config.h"
 #include "Packet.h"
 
+namespace tamproxy {
+
 // Constructor
 PacketController::PacketController() {
     Serial.begin(BAUD_RATE);    // Setup the serial port
@@ -101,4 +103,6 @@ void PacketController::transmitError(uint8_t errorCode) {
     Serial.write(errorCode);
     _errorFlag = true;
     _midReceive = false;
+}
+
 }

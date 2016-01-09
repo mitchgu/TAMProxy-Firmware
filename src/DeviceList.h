@@ -5,8 +5,9 @@
 #include <vector>
 #include "Device.h"
 
-// A class to manage the list of active devices
+namespace tamproxy {
 
+// A class to manage the list of active devices
 class DeviceList : public Device {
 private:
     std::vector<Device*> _devices;
@@ -18,4 +19,5 @@ public:
     Device* get(uint8_t idx);
 };
 
+}
 #endif

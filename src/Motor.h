@@ -7,6 +7,8 @@
 
 // A class that that controls motor controllers that take a dir and pwm inputs
 
+namespace tamproxy {
+
 class Motor : public Device {
 private:
     uint8_t _dirPin;
@@ -16,4 +18,5 @@ public:
     std::vector<uint8_t> handleRequest(std::vector<uint8_t> &request);
 };
 
+}
 #endif

@@ -8,6 +8,8 @@
 
 // A class that handles receiving, parsing, and transmitting packets
 
+namespace tamproxy {
+
 class PacketController {
 private:
     uint8_t _receiveBuffer[PACKET_MAX_SIZE];
@@ -25,5 +27,7 @@ public:
     Packet* getLatestPacket();
     void transmit(std::vector<uint8_t> &responseData);
 };
+
+}
 
 #endif

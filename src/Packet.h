@@ -6,6 +6,8 @@
 
 // A packet struct. Pretty self explanatory.
 
+namespace tamproxy {
+
 struct Packet {
 public:
     uint16_t id;
@@ -13,4 +15,5 @@ public:
     std::vector<uint8_t> payload;
 };
 
+}
 #endif

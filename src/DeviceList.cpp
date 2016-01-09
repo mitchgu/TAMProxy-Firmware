@@ -12,6 +12,8 @@
 #include "AnalogOutput.h"
 #include "Motor.h"
 
+namespace tamproxy {
+
 // Handles a packet request to it
 // Capable of adding to, removing from, and clearing the devices
 std::vector<uint8_t> DeviceList::handleRequest(std::vector<uint8_t> &request) {
@@ -104,3 +106,4 @@ void DeviceList::clear() {
     _devices.clear();
 }
 
+}

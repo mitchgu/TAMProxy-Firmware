@@ -4,6 +4,8 @@
 #include "Device.h"
 #include "config.h"
 
+namespace tamproxy {
+
 // Constructor takes a pin number and whether it's pullup
 AnalogOutput::AnalogOutput(uint8_t pin) {
     _pin = pin;
@@ -19,4 +21,6 @@ std::vector<uint8_t> AnalogOutput::handleRequest(std::vector<uint8_t> &request) 
         analogWrite(_pin, (request[1]<<8) + request[2]);
         return {OK_CODE};
     }
+}
+
 }

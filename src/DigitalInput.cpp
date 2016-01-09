@@ -4,6 +4,8 @@
 #include "Device.h"
 #include "config.h"
 
+namespace tamproxy {
+
 // Constructor takes a pin number and whether it's pullup
 DigitalInput::DigitalInput(uint8_t pin, uint8_t pullup) {
     _pin = pin;
@@ -22,4 +24,6 @@ std::vector<uint8_t> DigitalInput::handleRequest(std::vector<uint8_t> &request) 
     } else {
         return {digitalRead(_pin)};
     }
+}
+
 }

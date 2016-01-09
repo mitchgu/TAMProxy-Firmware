@@ -4,6 +4,8 @@
 #include "Device.h"
 #include "config.h"
 
+namespace tamproxy {
+
 // Constructor takes a dir pin and a pwm output pin
 Motor::Motor(uint8_t dirPin, uint8_t pwmPin) {
     _dirPin = dirPin;
@@ -23,4 +25,6 @@ std::vector<uint8_t> Motor::handleRequest(std::vector<uint8_t> &request) {
         analogWrite(_pwmPin, (request[2]<<8) + request[3]);
         return {OK_CODE};
     }
+}
+
 }

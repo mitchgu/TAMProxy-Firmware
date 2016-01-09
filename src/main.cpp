@@ -7,6 +7,8 @@
 #include "DeviceList.h"
 #include "Packet.h"
 
+using namespace tamproxy;
+
 PacketController *pc;
 DeviceList *dl;
 

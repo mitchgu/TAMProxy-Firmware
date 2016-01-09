@@ -4,6 +4,8 @@
 #include "Device.h"
 #include "config.h"
 
+namespace tamproxy {
+
 // Constructor takes a pin number
 AnalogInput::AnalogInput(uint8_t pin) {
     _pin = pin;
@@ -19,4 +21,6 @@ std::vector<uint8_t> AnalogInput::handleRequest(std::vector<uint8_t> &request) {
         uint16_t val = analogRead(_pin);
         return {static_cast<uint8_t>(val>>8), static_cast<uint8_t>(val)};
     }
+}
+
 }
