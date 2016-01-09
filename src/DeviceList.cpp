@@ -11,6 +11,7 @@
 #include "AnalogInput.h"
 #include "AnalogOutput.h"
 #include "Motor.h"
+#include "Encoder.h"
 
 namespace tamproxy {
 
@@ -86,6 +87,11 @@ std::vector<uint8_t> DeviceList::add(std::vector<uint8_t>& request) {
         case MOTOR_CODE:
             if (request.size() == 4) {
                 d = new Motor(request[2], request[3]);
+            } else { return {REQUEST_LENGTH_INVALID_CODE}; };
+            break;
+        case ENCODER_CODE:
+            if (request.size() == 4) {
+                d = new Encoder(request[2], request[3]);
             } else { return {REQUEST_LENGTH_INVALID_CODE}; };
             break;
         default:

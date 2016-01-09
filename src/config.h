@@ -32,6 +32,8 @@
 #define ANALOG_OUTPUT_CODE 'a'
 #define ANALOG_OUTPUT_WRITE_CODE 'W'
 #define ENCODER_CODE 'E'
+#define ENCODER_READ_CODE 'R'
+#define ENCODER_WRITE_CODE 'W'
 #define MOTOR_CODE 'M'
 #define MOTOR_WRITE_CODE 'W'
 #define FEEDBACK_MOTOR_CODE 'm'
