@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <vector>
 #include "Device.h"
-#include <Encoder.h>
+#include "Encoder.h"
 
 namespace tamproxy {
 

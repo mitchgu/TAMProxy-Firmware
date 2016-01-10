@@ -1,4 +1,4 @@
-#include "Encoder.h"
+#include "TAMPEncoder.h"
 #include <cstdint>
 #include "WProgram.h"
 #include "Device.h"

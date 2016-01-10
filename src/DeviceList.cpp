@@ -11,7 +11,7 @@
 #include "AnalogInput.h"
 #include "AnalogOutput.h"
 #include "Motor.h"
-#include "Encoder.h"
+#include "TAMPEncoder.h"
 
 namespace tamproxy {
 

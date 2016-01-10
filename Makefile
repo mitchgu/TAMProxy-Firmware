@@ -49,7 +49,8 @@ TOOLSPATH = $(ARDUINOPATH)/hardware/tools
 COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
 
 # path location for Arduino libraries
-LIBRARYPATH = libraries
+LIBRARYPATH = $(ARDUINOPATH)/hardware/teensy/avr/libraries
+LIBRARIES = $(LIBRARYPATH)/Encoder
 
 # path location for the arm-none-eabi compiler
 COMPILERPATH = $(TOOLSPATH)/arm/bin
@@ -93,8 +94,8 @@ OBJCOPY = $(abspath $(COMPILERPATH))/arm-none-eabi-objcopy
 SIZE = $(abspath $(COMPILERPATH))/arm-none-eabi-size
 
 # automatically create lists of the sources and objects
-LC_FILES := $(wildcard $(LIBRARYPATH)/*/*.c)
-LCPP_FILES := $(wildcard $(LIBRARYPATH)/*/*.cpp)
+LC_FILES := $(foreach library, $(LIBRARIES), $(wildcard $(library)/*.c))
+LCPP_FILES := $(foreach library, $(LIBRARIES), $(wildcard $(library)/*.cpp))
 TC_FILES := $(wildcard $(COREPATH)/*.c)
 TCPP_FILES := $(wildcard $(COREPATH)/*.cpp)
 TCPP_FILES := $(filter-out $(COREPATH)/main.cpp, $(TCPP_FILES))
