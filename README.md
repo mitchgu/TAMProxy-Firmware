@@ -43,15 +43,15 @@ Supported Devices
 - [x] Digital output
 - [x] Analog input
 - [x] Analog output (PWM, or DAC on A14/40)
-- [ ] Quadrature encoder
+- [x] Quadrature encoder
 - [x] Standard Motor (Cytron/Dago with PWM & dir)
 - [ ] Feedback motor (Encoder feedback with PID for settable speed)
 - [ ] Servo Motor
 - [ ] Stepper Motor
-- [ ] Analog Devices Gyroscope (SPI)
+- [x] Analog Devices Gyroscope (SPI)
 - [x] Short-range IR Distance Sensor (just an analog input)
 - [x] Ultra-short range IR Distance Sensor (just a digital input)
-- [ ] Color Sensor (SPI)
+- [x] Color Sensor (I2C)
 
 Dependencies
 ------------
