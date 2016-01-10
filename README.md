@@ -62,7 +62,7 @@ Dependencies
 
 ### Windows Support
 Unfortunately, getting the Makefile to work with an existing Teensyduino install is difficult on Windows, so the Makefile currently only works with OSX or Linux.
-However, an easy alternative is using the Arduino IDE to compile and upload. Simply rename the `main.cpp` file in `src` to something like `TAMProxy.ino` and rename the `src` folder itself to `TAMProxy`. Then open the `TAMProxy.ino` in the Arduino IDE and compile and upload. 
+However, an easy alternative is using the Arduino IDE to compile and upload. Simply open `src.ino` in the Arduino IDE and compile and upload.
 
 Quick Start
 -----------
