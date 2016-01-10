@@ -12,6 +12,7 @@
 #include "AnalogOutput.h"
 #include "Motor.h"
 #include "TAMPEncoder.h"
+#include "Gyro.h"
 
 namespace tamproxy {
 
@@ -92,6 +93,11 @@ std::vector<uint8_t> DeviceList::add(std::vector<uint8_t>& request) {
         case ENCODER_CODE:
             if (request.size() == 4) {
                 d = new Encoder(request[2], request[3]);
+            } else { return {REQUEST_LENGTH_INVALID_CODE}; };
+            break;
+        case GYRO_CODE:
+            if (request.size() == 3) {
+                d = new Gyro(request[2]);
             } else { return {REQUEST_LENGTH_INVALID_CODE}; };
             break;
         default:

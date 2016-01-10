@@ -40,6 +40,7 @@
 #define SERVO_CODE 'S'
 #define STEPPER_CODE 's'
 #define GYRO_CODE 'G'
+#define GYRO_READ_CODE 'R'
 #define ULTRASONIC_CODE 'U'
 #define IR_CODE 'I'
 #define COLOR_CODE 'C'
