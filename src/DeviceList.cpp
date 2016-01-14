@@ -13,6 +13,7 @@
 #include "Motor.h"
 #include "TAMPEncoder.h"
 #include "Gyro.h"
+#include "Color.h"
 
 namespace tamproxy {
 
@@ -98,6 +99,11 @@ std::vector<uint8_t> DeviceList::add(std::vector<uint8_t>& request) {
         case GYRO_CODE:
             if (request.size() == 3) {
                 d = new Gyro(request[2]);
+            } else { return {REQUEST_LENGTH_INVALID_CODE}; };
+            break;
+        case COLOR_CODE:
+            if (request.size() == 2) {
+                d = new Color();
             } else { return {REQUEST_LENGTH_INVALID_CODE}; };
             break;
         default:
