@@ -50,7 +50,7 @@ COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
 
 # path location for Arduino libraries
 LIBRARYPATH = $(ARDUINOPATH)/hardware/teensy/avr/libraries
-LIBRARIES = $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI
+LIBRARIES = $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo
 
 # path location for the arm-none-eabi compiler
 COMPILERPATH = $(TOOLSPATH)/arm/bin
