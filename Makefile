@@ -50,7 +50,10 @@ COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
 
 # path location for Arduino libraries
 LIBRARYPATH = $(ARDUINOPATH)/hardware/teensy/avr/libraries
-LIBRARIES = $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI
+# path location for local libraries
+LOCALLIBRARYPATH = $(abspath $(CURDIR)/libraries)
+LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LOCALLIBRARYPATH)/Adafruit_TCS34725
+
 
 # path location for the arm-none-eabi compiler
 COMPILERPATH = $(TOOLSPATH)/arm/bin
@@ -105,6 +108,7 @@ INO_FILES := $(wildcard src/*.ino)
 
 # include paths for libraries
 L_INC := $(foreach lib,$(filter %/, $(wildcard $(LIBRARYPATH)/*/)), -I$(lib))
+L_INC += $(foreach lib,$(filter %/, $(wildcard $(LOCALLIBRARYPATH)/*/)), -I$(lib))
 
 SOURCES := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(INO_FILES:.ino=.o) $(TC_FILES:.c=.o) $(TCPP_FILES:.cpp=.o) $(LC_FILES:.c=.o) $(LCPP_FILES:.cpp=.o)
 OBJS := $(foreach src,$(SOURCES), $(BUILDDIR)/$(src))
