@@ -13,6 +13,10 @@ Servo::Servo(uint8_t pwmPin) {
     _servo.attach(_pwmPin);
 }
 
+Servo::~Servo() {
+    _servo.detach();
+}
+
 std::vector<uint8_t> Servo::handleRequest(std::vector<uint8_t> &request) {
     if (request[0] == SERVO_WRITE_CODE) {
         if (request.size() != 3) return {REQUEST_LENGTH_INVALID_CODE};

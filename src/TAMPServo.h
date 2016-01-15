@@ -17,6 +17,7 @@ private:
 	
 public:
     Servo(uint8_t pwmPin);
+    ~Servo();
     std::vector<uint8_t> handleRequest(std::vector<uint8_t> &request);
 };
 
