@@ -1,4 +1,4 @@
-#include "TAMPServo.h"
+#include "Servo.h"
 #include <cstdint>
 #include "WProgram.h"
 #include "Device.h"

@@ -72,7 +72,7 @@ endif
 #************************************************************************
 
 # CPPFLAGS = compiler options for C and C++
-CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mcpu=cortex-m4 -mthumb -MMD $(OPTIONS) -Isrc -I$(COREPATH) 
+CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mcpu=cortex-m4 -mthumb -MMD $(OPTIONS) -I$(COREPATH) 
 
 # compiler options for C++ only
 CXXFLAGS = -std=gnu++0x -felide-constructors -fno-exceptions -fno-rtti

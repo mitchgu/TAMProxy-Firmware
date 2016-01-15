@@ -11,10 +11,10 @@
 #include "AnalogInput.h"
 #include "AnalogOutput.h"
 #include "Motor.h"
-#include "TAMPEncoder.h"
+#include "Encoder.h"
 #include "Gyro.h"
 #include "Color.h"
-#include "TAMPServo.h"
+#include "Servo.h"
 
 namespace tamproxy {
 
