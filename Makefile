@@ -52,8 +52,7 @@ COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
 LIBRARYPATH = $(ARDUINOPATH)/hardware/teensy/avr/libraries
 # path location for local libraries
 LOCALLIBRARYPATH = $(abspath $(CURDIR)/libraries)
-LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LOCALLIBRARYPATH)/Adafruit_TCS34725
-
+LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo $(LOCALLIBRARYPATH)/Adafruit_TCS34725
 
 # path location for the arm-none-eabi compiler
 COMPILERPATH = $(TOOLSPATH)/arm/bin

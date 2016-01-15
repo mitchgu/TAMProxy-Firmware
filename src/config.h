@@ -38,6 +38,7 @@
 #define MOTOR_WRITE_CODE 'W'
 #define FEEDBACK_MOTOR_CODE 'm'
 #define SERVO_CODE 'S'
+#define SERVO_WRITE_CODE 'W'
 #define STEPPER_CODE 's'
 #define GYRO_CODE 'G'
 #define GYRO_READ_CODE 'R'
