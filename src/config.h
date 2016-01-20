@@ -42,6 +42,7 @@
 #define STEPPER_CODE 's'
 #define GYRO_CODE 'G'
 #define GYRO_READ_CODE 'R'
+#define GYRO_CALIBRATE_CODE 'C'
 #define ULTRASONIC_CODE 'U'
 #define IR_CODE 'I'
 #define COLOR_CODE 'C'
