@@ -119,13 +119,14 @@ std::vector<uint8_t> DeviceList::add(std::vector<uint8_t>& request) {
     return {OK_CODE, static_cast<uint8_t>(_devices.size()-1)};
 }
 
-// Clears the device list and resets all pins, makin sure that the devices get deallocated
+// Clears the device list and resets all pins, making sure that the devices get deallocated
 void DeviceList::clear() {
     for (uint8_t i = 0; i < NUM_PINS; i++) {
         pinMode(i, INPUT);
     }
-    for (uint8_t i = 0; i < _devices.size(); i++) {
-        delete _devices[i];
+    for (Device* d : _devices) {
+        if(d != nullptr)
+            delete d;
     }
     _devices.clear();
 }
