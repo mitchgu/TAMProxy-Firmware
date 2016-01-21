@@ -38,7 +38,7 @@ else
     else
     	# Other UNIX Machine
     	# This should probably be changed to where you unzipped the Arduino app after downloading
-    	ARDUINOPATH = ~/Downloads/arduino-1.6.7
+    	ARDUINOPATH = ${HOME}/Downloads/arduino-1.6.6
     endif
 endif
 

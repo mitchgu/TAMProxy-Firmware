@@ -2,3 +2,5 @@
 *.d
 *.hex
 *.elf
+# Text editor session files
+*~
