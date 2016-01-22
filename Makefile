@@ -21,30 +21,6 @@ OPTIONS += -D__$(MCU)__ -DF_CPU=$(TEENSY_CORE_SPEED) -DARDUINO=10600 -DTEENSYDUI
 # directory to build in
 BUILDDIR = $(abspath $(CURDIR)/build)
 
-#************************************************************************
-# Location of Teensyduino utilities, Toolchain, and Arduino Libraries.
-# To use this makefile without Arduino, copy the resources from these
-# locations and edit the pathnames.  The rest of Arduino is not needed.
-#************************************************************************
-
-ifeq ($(OS),Windows_NT)
-    # Windows machine
-    ARDUINOPATH = C:/Program Files (x86)/Arduino
-else
-    UNAME_S := $(shell uname -s)
-    ifeq ($(UNAME_S),Darwin)
-    	# OS X Machine
-    	ARDUINOPATH = /Applications/Arduino.app/Contents/Java
-    else
-    	# Other UNIX Machine
-    	# This should probably be changed to where you unzipped the Arduino app after downloading
-    	ARDUINOPATH = ${HOME}/Downloads/arduino-1.6.6
-    endif
-endif
-
-# path location for Teensy Loader, teensy_post_compile and teensy_reboot
-TOOLSPATH = $(ARDUINOPATH)/hardware/tools
-
 # path location for Teensy 3 core
 COREPATH = cores/teensy3
 
@@ -53,18 +29,32 @@ LIBRARYPATH = libraries
 
 LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo $(LIBRARYPATH)/Adafruit_TCS34725
 
-# path location for the arm-none-eabi compiler
-COMPILERPATH = $(TOOLSPATH)/arm/bin
-
+#************************************************************************
+# Location of Teensyduino utilities, Toolchain, and Arduino Libraries.
+# To use this makefile without Arduino, copy the resources from these
+# locations and edit the pathnames.  The rest of Arduino is not needed.
+#************************************************************************
+#
 ifeq ($(OS),Windows_NT)
     # Windows machine
-    POSTCOMPILEPATH = $(TOOLSPATH)/teensy_post_compile.exe
-    REBOOTPATH = $(TOOLSPATH)/teensy_reboot.exe
+    $(error Using the Makefile on Windows is not supported. Simply open src/src.ino in Arduino with teensyduino and supporting libraries installed)
 else
-    # OSX/UNIX machine
-    POSTCOMPILEPATH = $(TOOLSPATH)/teensy_post_compile
-    REBOOTPATH = $(TOOLSPATH)/teensy_reboot
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Darwin)
+    	# OS X Machine
+    	ARDUINOPATH = /Applications/Arduino.app/Contents/Java
+    else
+    	# Other UNIX Machine
+    	# This should probably be changed to where you extracted the Arduino app after downloading
+    	ARDUINOPATH = ${HOME}/Downloads/arduino-1.6.6
+    endif
 endif
+
+# path location for Teensy Loader, teensy_post_compile and teensy_reboot
+TOOLSPATH = $(ARDUINOPATH)/hardware/tools
+
+# path location for the arm-none-eabi compiler
+COMPILERPATH = $(TOOLSPATH)/arm/bin
 
 #************************************************************************
 # Settings below this point usually do not need to be edited
