@@ -88,7 +88,9 @@ Packet* PacketController::getLatestPacket() {
 void PacketController::transmit(std::vector<uint8_t> &responseData) {
     uint16_t id = _latestPacket->id;
     uint8_t header[4] = {
-        PACKET_START_BYTE, id, id>>8,
+        PACKET_START_BYTE,
+        static_cast<uint8_t>(id),
+        static_cast<uint8_t>(id>>8),
         static_cast<uint8_t>(4 + responseData.size())
     };
 
