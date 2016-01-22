@@ -16,3 +16,4 @@
 [submodule "cores"]
 	path = cores
 	url = https://github.com/mitchgu/cores
+	branch = more-usb-buffers
