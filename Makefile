@@ -56,6 +56,9 @@ TOOLSPATH = $(ARDUINOPATH)/hardware/tools
 # path location for the arm-none-eabi compiler
 COMPILERPATH = $(TOOLSPATH)/arm/bin
 
+POSTCOMPILEPATH = $(TOOLSPATH)/teensy_post_compile
+REBOOTPATH = $(TOOLSPATH)/teensy_reboot
+
 #************************************************************************
 # Settings below this point usually do not need to be edited
 #************************************************************************
