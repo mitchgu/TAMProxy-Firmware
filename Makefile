@@ -49,10 +49,9 @@ TOOLSPATH = $(ARDUINOPATH)/hardware/tools
 COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
 
 # path location for Arduino libraries
-LIBRARYPATH = $(ARDUINOPATH)/hardware/teensy/avr/libraries
-# path location for local libraries
-LOCALLIBRARYPATH = $(abspath $(CURDIR)/libraries)
-LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo $(LOCALLIBRARYPATH)/Adafruit_TCS34725
+LIBRARYPATH = $(abspath $(CURDIR)/libraries)
+
+LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo $(LIBRARYPATH)/Adafruit_TCS34725
 
 # path location for the arm-none-eabi compiler
 COMPILERPATH = $(TOOLSPATH)/arm/bin
@@ -72,7 +71,7 @@ endif
 #************************************************************************
 
 # CPPFLAGS = compiler options for C and C++
-CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mcpu=cortex-m4 -mthumb -MMD $(OPTIONS) -I$(COREPATH) 
+CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mcpu=cortex-m4 -mthumb -MMD $(OPTIONS) -I$(COREPATH)
 
 # compiler options for C++ only
 CXXFLAGS = -std=gnu++0x -felide-constructors -fno-exceptions -fno-rtti
@@ -107,7 +106,6 @@ INO_FILES := $(wildcard src/*.ino)
 
 # include paths for libraries
 L_INC := $(foreach lib,$(filter %/, $(wildcard $(LIBRARYPATH)/*/)), -I$(lib))
-L_INC += $(foreach lib,$(filter %/, $(wildcard $(LOCALLIBRARYPATH)/*/)), -I$(lib))
 
 SOURCES := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(INO_FILES:.ino=.o) $(TC_FILES:.c=.o) $(TCPP_FILES:.cpp=.o) $(LC_FILES:.c=.o) $(LCPP_FILES:.cpp=.o)
 OBJS := $(foreach src,$(SOURCES), $(BUILDDIR)/$(src))
