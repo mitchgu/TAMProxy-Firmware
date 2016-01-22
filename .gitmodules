@@ -13,3 +13,6 @@
 [submodule "libraries/Wire"]
 	path = libraries/Wire
 	url = https://github.com/PaulStoffregen/Wire
+[submodule "cores"]
+	path = cores
+	url = https://github.com/mitchgu/cores

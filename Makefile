@@ -46,7 +46,7 @@ endif
 TOOLSPATH = $(ARDUINOPATH)/hardware/tools
 
 # path location for Teensy 3 core
-COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
+COREPATH = cores/teensy3
 
 # path location for Arduino libraries
 LIBRARYPATH = libraries
