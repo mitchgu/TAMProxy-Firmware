@@ -87,13 +87,16 @@ Packet* PacketController::getLatestPacket() {
 // The packet has the same ID as the last received packet.
 void PacketController::transmit(std::vector<uint8_t> &responseData) {
     uint16_t id = _latestPacket->id;
-    Serial.write(PACKET_START_BYTE);
-    Serial.write(id);
-    Serial.write(id>>8);
-    Serial.write(4+responseData.size());
-    for (uint8_t i = 0; i < responseData.size(); i++) {
-        Serial.write(responseData[i]);
-    }
+    uint8_t header[4] = {
+        PACKET_START_BYTE,
+        static_cast<uint8_t>(id),
+        static_cast<uint8_t>(id>>8),
+        static_cast<uint8_t>(4 + responseData.size())
+    };
+
+    Serial.write(header, 4);
+    Serial.write(&responseData[0], responseData.size());
+
     Serial.send_now();
 }
 
