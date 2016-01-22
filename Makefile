@@ -49,7 +49,7 @@ TOOLSPATH = $(ARDUINOPATH)/hardware/tools
 COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
 
 # path location for Arduino libraries
-LIBRARYPATH = $(abspath $(CURDIR)/libraries)
+LIBRARYPATH = libraries
 
 LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo $(LIBRARYPATH)/Adafruit_TCS34725
 
