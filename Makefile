@@ -21,15 +21,23 @@ OPTIONS += -D__$(MCU)__ -DF_CPU=$(TEENSY_CORE_SPEED) -DARDUINO=10600 -DTEENSYDUI
 # directory to build in
 BUILDDIR = $(abspath $(CURDIR)/build)
 
+# path location for Teensy 3 core
+COREPATH = cores/teensy3
+
+# path location for Arduino libraries
+LIBRARYPATH = libraries
+
+LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo $(LIBRARYPATH)/Adafruit_TCS34725
+
 #************************************************************************
 # Location of Teensyduino utilities, Toolchain, and Arduino Libraries.
 # To use this makefile without Arduino, copy the resources from these
 # locations and edit the pathnames.  The rest of Arduino is not needed.
 #************************************************************************
-
+#
 ifeq ($(OS),Windows_NT)
     # Windows machine
-    ARDUINOPATH = C:/Program Files (x86)/Arduino
+    $(error Using the Makefile on Windows is not supported. Simply open src/src.ino in Arduino with teensyduino and supporting libraries installed)
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Darwin)
@@ -37,7 +45,7 @@ else
     	ARDUINOPATH = /Applications/Arduino.app/Contents/Java
     else
     	# Other UNIX Machine
-    	# This should probably be changed to where you unzipped the Arduino app after downloading
+    	# This should probably be changed to where you extracted the Arduino app after downloading
     	ARDUINOPATH = ${HOME}/Downloads/arduino-1.6.6
     endif
 endif
@@ -45,34 +53,18 @@ endif
 # path location for Teensy Loader, teensy_post_compile and teensy_reboot
 TOOLSPATH = $(ARDUINOPATH)/hardware/tools
 
-# path location for Teensy 3 core
-COREPATH = $(ARDUINOPATH)/hardware/teensy/avr/cores/teensy3
-
-# path location for Arduino libraries
-LIBRARYPATH = $(ARDUINOPATH)/hardware/teensy/avr/libraries
-# path location for local libraries
-LOCALLIBRARYPATH = $(abspath $(CURDIR)/libraries)
-LIBRARIES = $(LIBRARYPATH)/Wire $(LIBRARYPATH)/Encoder $(LIBRARYPATH)/SPI $(LIBRARYPATH)/Servo $(LOCALLIBRARYPATH)/Adafruit_TCS34725
-
 # path location for the arm-none-eabi compiler
 COMPILERPATH = $(TOOLSPATH)/arm/bin
 
-ifeq ($(OS),Windows_NT)
-    # Windows machine
-    POSTCOMPILEPATH = $(TOOLSPATH)/teensy_post_compile.exe
-    REBOOTPATH = $(TOOLSPATH)/teensy_reboot.exe
-else
-    # OSX/UNIX machine
-    POSTCOMPILEPATH = $(TOOLSPATH)/teensy_post_compile
-    REBOOTPATH = $(TOOLSPATH)/teensy_reboot
-endif
+POSTCOMPILEPATH = $(TOOLSPATH)/teensy_post_compile
+REBOOTPATH = $(TOOLSPATH)/teensy_reboot
 
 #************************************************************************
 # Settings below this point usually do not need to be edited
 #************************************************************************
 
 # CPPFLAGS = compiler options for C and C++
-CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mcpu=cortex-m4 -mthumb -MMD $(OPTIONS) -I$(COREPATH) 
+CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mcpu=cortex-m4 -mthumb -MMD $(OPTIONS) -I$(COREPATH)
 
 # compiler options for C++ only
 CXXFLAGS = -std=gnu++0x -felide-constructors -fno-exceptions -fno-rtti
@@ -107,7 +99,6 @@ INO_FILES := $(wildcard src/*.ino)
 
 # include paths for libraries
 L_INC := $(foreach lib,$(filter %/, $(wildcard $(LIBRARYPATH)/*/)), -I$(lib))
-L_INC += $(foreach lib,$(filter %/, $(wildcard $(LOCALLIBRARYPATH)/*/)), -I$(lib))
 
 SOURCES := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(INO_FILES:.ino=.o) $(TC_FILES:.c=.o) $(TCPP_FILES:.cpp=.o) $(LC_FILES:.c=.o) $(LCPP_FILES:.cpp=.o)
 OBJS := $(foreach src,$(SOURCES), $(BUILDDIR)/$(src))

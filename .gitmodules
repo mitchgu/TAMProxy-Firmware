@@ -1,0 +1,19 @@
+[submodule "libraries/Adafruit_TCS34725"]
+	path = libraries/Adafruit_TCS34725
+	url = https://github.com/adafruit/Adafruit_TCS34725.git
+[submodule "libraries/Encoder"]
+	path = libraries/Encoder
+	url = https://github.com/PaulStoffregen/Encoder
+[submodule "libraries/SPI"]
+	path = libraries/SPI
+	url = https://github.com/PaulStoffregen/SPI.git
+[submodule "libraries/Servo"]
+	path = libraries/Servo
+	url = https://github.com/PaulStoffregen/Servo
+[submodule "libraries/Wire"]
+	path = libraries/Wire
+	url = https://github.com/PaulStoffregen/Wire
+[submodule "cores"]
+	path = cores
+	url = https://github.com/mitchgu/cores
+	branch = more-usb-buffers
