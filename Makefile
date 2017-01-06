@@ -1,22 +1,12 @@
-# set your MCU type here, or make command line `make MCU=MK20DX256`
-MCU=MK20DX256
-
 # The name of your project (used to name the compiled .hex file)
 TARGET = $(notdir $(CURDIR))
 
-# Base clock: 72000000
-# Conservative overclock: 96000000
-# Riskier overclocks: 120000000, 144000000
-# Crazy overclock: 168000000
-TEENSY_CORE_SPEED = 96000000
+# The Teensy board you're targeting (30,31,32,35,36, or LC)
+TEENSY = ??
 
 OPTIMIZE_LEVEL = -O
 
-# configurable options
-OPTIONS = -DUSB_SERIAL -DLAYOUT_US_ENGLISH -DUSING_MAKEFILE
-
-# options needed by many Arduino libraries to configure for Teensy 3.0
-OPTIONS += -D__$(MCU)__ -DF_CPU=$(TEENSY_CORE_SPEED) -DARDUINO=10600 -DTEENSYDUINO=121
+OPTIONS = -DUSB_SERIAL -DLAYOUT_US_ENGLISH -DUSING_MAKEFILE -DARDUINO=10800 -DTEENSYDUINO=134
 
 # directory to build in
 BUILDDIR = $(abspath $(CURDIR)/build)
@@ -64,7 +54,7 @@ REBOOTPATH = $(TOOLSPATH)/teensy_reboot
 #************************************************************************
 
 # CPPFLAGS = compiler options for C and C++
-CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mcpu=cortex-m4 -mthumb -MMD $(OPTIONS) -I$(COREPATH)
+CPPFLAGS = -Wall -g $(OPTIMIZE_LEVEL) -ffunction-sections -fdata-sections -nostdlib -mthumb -MMD $(OPTIONS) -I$(COREPATH)
 
 # compiler options for C++ only
 CXXFLAGS = -std=gnu++0x -felide-constructors -fno-exceptions -fno-rtti
@@ -72,14 +62,42 @@ CXXFLAGS = -std=gnu++0x -felide-constructors -fno-exceptions -fno-rtti
 # compiler options for C only
 CFLAGS =
 
-# linker options
-LOWER_MCU := $(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst G,g,$(subst H,h,$(subst I,i,$(subst J,j,$(subst K,k,$(subst L,l,$(subst M,m,$(subst N,n,$(subst O,o,$(subst P,p,$(subst Q,q,$(subst R,r,$(subst S,s,$(subst T,t,$(subst U,u,$(subst V,v,$(subst W,w,$(subst X,x,$(subst Y,y,$(subst Z,z,$(MCU)))))))))))))))))))))))))))
-MCU_LD = $(LOWER_MCU).ld
-LDSCRIPT = $(COREPATH)/$(MCU_LD)
-LDFLAGS = $(OPTIMIZE_LEVEL) -Wl,--gc-sections,--defsym=__rtc_localtime=0 -mcpu=cortex-m4 -mthumb -T$(LDSCRIPT)
+LDFLAGS = $(OPTIMIZE_LEVEL) -Wl,--gc-sections,--defsym=__rtc_localtime=0 -mthumb
 
 # additional libraries to link
 LIBS = -lm
+
+# compiler options specific to teensy version
+ifeq ($(TEENSY), 30)
+    CPPFLAGS += -D__MK20DX128__ -mcpu=cortex-m4 -DF_CPU=96000000
+    LDSCRIPT = $(COREPATH)/mk20dx128.ld
+    LDFLAGS += -mcpu=cortex-m4 -T$(LDSCRIPT)
+else ifeq ($(TEENSY), 31)
+    CPPFLAGS += -D__MK20DX256__ -mcpu=cortex-m4 -DF_CPU=96000000
+    LDSCRIPT = $(COREPATH)/mk20dx256.ld
+    LDFLAGS += -mcpu=cortex-m4 -T$(LDSCRIPT)
+else ifeq ($(TEENSY), 32)
+    CPPFLAGS += -D__MK20DX256__ -mcpu=cortex-m4 -DF_CPU=96000000
+    LDSCRIPT = $(COREPATH)/mk20dx256.ld
+    LDFLAGS += -mcpu=cortex-m4 -T$(LDSCRIPT)
+else ifeq ($(TEENSY), LC)
+    CPPFLAGS += -D__MKL26Z64__ -mcpu=cortex-m0plus -DF_CPU=48000000
+    LDSCRIPT = $(COREPATH)/mkl26z64.ld
+    LDFLAGS += -mcpu=cortex-m0plus -T$(LDSCRIPT)
+    LIBS += -larm_cortexM0l_math
+else ifeq ($(TEENSY), 35)
+    CPPFLAGS += -D__MK64FX512__ -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DF_CPU=120000000
+    LDSCRIPT = $(COREPATH)/mk64fx512.ld
+    LDFLAGS += -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T$(LDSCRIPT)
+    LIBS += -larm_cortexM4lf_math
+else ifeq ($(TEENSY), 36)
+    CPPFLAGS += -D__MK66FX1M0__ -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -DF_CPU=180000000
+    LDSCRIPT = $(COREPATH)/mk66fx1m0.ld
+    LDFLAGS += -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T$(LDSCRIPT)
+    LIBS += -larm_cortexM4lf_math
+else
+    $(error Choose a valid target Teensy board (Makefile line 5))
+endif
 
 # names for the compiler programs
 CC = $(abspath $(COMPILERPATH))/arm-none-eabi-gcc

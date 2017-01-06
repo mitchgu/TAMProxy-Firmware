@@ -57,8 +57,8 @@ Dependencies
 ------------
 
 - GNU Make (Probably already have if you're running OSX/Linux)
-- [Arduino IDE 1.6.6](https://www.arduino.cc/en/Main/OldSoftwareReleases#previous) - needed to install Teensyduino and probably good to have anyway
-- [Teensyduino 1.2.6](https://www.pjrc.com/teensy/td_download.html) - Contains the necessary ARM C compilers, Arduino-compatible libraries, and programmers for the Teensy
+- [Arduino IDE 1.8.0](https://www.arduino.cc/en/Main/OldSoftwareReleases#previous) - needed to install Teensyduino and probably good to have anyway
+- [Teensyduino 1.3.4](https://www.pjrc.com/teensy/td_download.html) - Contains the necessary ARM C compilers, Arduino-compatible libraries, and programmers for the Teensy
 
 ### Windows Support
 Unfortunately, getting the Makefile to work with an existing Teensyduino install is difficult on Windows, so the Makefile currently only works with OSX or Linux.
@@ -69,6 +69,8 @@ Quick Start
 
 - Ensure that you have the dependencies. If you're on Linux you may have to setup a [udev rule](https://www.pjrc.com/teensy/loader_linux.html) for the Teensy.
 - Open the Makefile and confirm that the Arduino application path is correct for your system.
+- In the Makefile, specify which Teensy board you're building for on line 5.
+- In the source folder, rename either `config_example_teensy32.h` or `config_example_teensy_35.h` to `config.h` depending on which board you're using. These can be generated and customized using `TAMProxy_pyHost`.
 - Run `make` to build the firmware and output an Intel `.hex` file.
 - Plug your Teensy in.
 - Run `make upload` to open the Teensy Loader programmer with the `.hex` file and program the Teensy. You may have to press the programming button on the Teensy to enter programming mode.

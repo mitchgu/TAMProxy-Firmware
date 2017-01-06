@@ -18,6 +18,9 @@ void setup() {
     analogWriteFrequency(FTM0PIN, PWM0_FREQUENCY);
     analogWriteFrequency(FTM1PIN, PWM1_FREQUENCY);
     analogWriteFrequency(FTM2PIN, PWM2_FREQUENCY);
+    #ifdef FTM3PIN
+    analogWriteFrequency(FTM3PIN, PWM3_FREQUENCY);
+    #endif
     pc = new PacketController;
     dl = new DeviceList;
 }
