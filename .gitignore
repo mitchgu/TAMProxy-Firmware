@@ -4,3 +4,5 @@
 *.elf
 # Text editor session files
 *~
+Makefile
+src/config.h

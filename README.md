@@ -68,9 +68,13 @@ Quick Start
 -----------
 
 - Ensure that you have the dependencies. If you're on Linux you may have to setup a [udev rule](https://www.pjrc.com/teensy/loader_linux.html) for the Teensy.
-- Open the Makefile and confirm that the Arduino application path is correct for your system.
-- In the Makefile, specify which Teensy board you're building for on line 5.
-- In the source folder, rename either `config_example_teensy32.h` or `config_example_teensy_35.h` to `config.h` depending on which board you're using. These can be generated and customized using `TAMProxy_pyHost`.
+- Clone this repository, then initialize the submodules
+	- `git submodule init`
+	- `git submodule update`
+- Copy `Makefile_example` to `Makefile` Then open `Makefile` and:
+	- Confirm that the Arduino application path is correct for your system.
+	- Specify which Teensy board you're building for on line 5.
+- In the `src` folder, copy either `config_example_teensy32.h` or `config_example_teensy_35.h` to `config.h` depending on which board you're using. These can be generated and customized using `TAMProxy_pyHost`.
 - Run `make` to build the firmware and output an Intel `.hex` file.
 - Plug your Teensy in.
 - Run `make upload` to open the Teensy Loader programmer with the `.hex` file and program the Teensy. You may have to press the programming button on the Teensy to enter programming mode.
