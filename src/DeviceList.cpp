@@ -114,8 +114,8 @@ std::vector<uint8_t> DeviceList::add(std::vector<uint8_t>& request) {
             } else { return {REQUEST_LENGTH_INVALID_CODE}; };
             break;
         case TOF_CODE:
-            if (request.size() == 2) {
-                d = new TimeOfFlight();
+            if (request.size() == 4) {
+                d = new TimeOfFlight(request[2], request[3]);
             } else { return {REQUEST_LENGTH_INVALID_CODE}; };
             break;
         default:

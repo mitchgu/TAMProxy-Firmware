@@ -49,6 +49,7 @@
 #define SERVO_WRITE_CODE 'W'
 #define STEPPER_CODE 's'
 #define TOF_CODE 'T'
+#define TOF_ENABLE_CODE 'E'
 #define TOF_READ_CODE 'R'
 #define ULTRASONIC_CODE 'U'
 
