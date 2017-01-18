@@ -52,6 +52,7 @@ Supported Devices
 - [x] Short-range IR Distance Sensor (just an analog input)
 - [x] Ultra-short range IR Distance Sensor (just a digital input)
 - [x] Color Sensor (I2C)
+- [x] Pololu VL53L0X time-of-flight distance sensor (I2C)
 
 Dependencies
 ------------

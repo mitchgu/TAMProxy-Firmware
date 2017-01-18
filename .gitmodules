@@ -17,3 +17,6 @@
 	path = cores
 	url = https://github.com/mitchgu/cores
 	branch = more-usb-buffers
+[submodule "libraries/vl53l0x-arduino"]
+	path = libraries/vl53l0x-arduino
+	url = git@github.com:gkanwar/vl53l0x-arduino.git
