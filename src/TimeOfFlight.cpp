@@ -19,6 +19,8 @@ TimeOfFlight::TimeOfFlight(uint8_t xshutPin, uint8_t id) {
   _address = (ADDRESS_DEFAULT & 0xf0) | id;
   pinMode(xshutPin, OUTPUT);
   digitalWrite(xshutPin, 0);
+  _range = 0xffff;
+  _upkeepTimer = millis();
 }
 
 TimeOfFlight::~TimeOfFlight() {
@@ -38,16 +40,29 @@ std::vector<uint8_t> TimeOfFlight::handleRequest(std::vector<uint8_t> &request) 
     init = isinit;
     return {_address};
   } else if (request[0] == TOF_READ_CODE) {
-    if (init) {
-      uint16_t range = 0;
-      range = sensor->readRangeContinuousMillimeters();
-      return {static_cast<uint8_t>(range>>8), static_cast<uint8_t>(range)};
-    }
-    else {
-      return {0xff, 0xff};
-    }
+    return {static_cast<uint8_t>(_range>>8), static_cast<uint8_t>(_range)};
   } else {
     return {REQUEST_BODY_INVALID_CODE};
+  }
+}
+
+void TimeOfFlight::doUpkeep() {
+  // Only upkeep every 10ms
+  if (millis() - _upkeepTimer <= 10) {
+    return;
+  }
+  _upkeepTimer = millis();
+  
+  // Time of flight sensor should continuously trigger reads and cache them
+  // otherwise we get really slow throughput while firmware blocks on a single
+  // distance read.
+  if (init) {
+    uint16_t range = 0;
+    range = sensor->readRangeContinuousNoBlockMillimeters();
+    if (range != 65535) {
+      // Cache result to pass to pyHost
+      _range = range;
+    }
   }
 }
 

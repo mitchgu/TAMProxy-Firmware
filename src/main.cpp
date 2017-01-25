@@ -53,6 +53,8 @@ void loop() {
         // Send a response packet
         pc->transmit(response);
     }
+    // Do any upkeep actions
+    dl->doUpkeep();
 }
 
 int main(void)
