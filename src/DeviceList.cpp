@@ -44,6 +44,13 @@ std::vector<uint8_t> DeviceList::handleRequest(std::vector<uint8_t> &request) {
     }
 }
 
+// Do any continuous upkeep
+void DeviceList::doUpkeep() {
+  for (unsigned idx = 0; idx < _devices.size(); ++idx) {
+    _devices[idx]->doUpkeep();
+  }
+}
+
 // Gets a device pointer at a certain index of the list.
 Device* DeviceList::get(uint8_t idx) {
     if (idx < _devices.size()) {

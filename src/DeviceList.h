@@ -17,6 +17,7 @@ private:
 public:
     std::vector<uint8_t> handleRequest(std::vector<uint8_t> &request);
     Device* get(uint8_t idx);
+    void doUpkeep();
 };
 
 }
